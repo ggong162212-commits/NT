@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#A8E6CF" />
+<title>🌴 나트랑 여행 — 7월 4일 (토)</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+  :root{
+    /* 파스텔 트로피컬 팔레트 */
+    --cream:#FFFBF5;
+    --cream-2:#FFF4E9;
+    --ink:#4F4A5E;
+    --ink-soft:#8A85A0;
+    --line:#EFE7DC;
+
+    --coral-bg:#FFE3D8; --coral-tx:#D06A4F; --coral-dot:#FF9C82;
+    --purple-bg:#ECDEFB; --purple-tx:#8C5FC4; --purple-dot:#C2A0EE;
+    --mint-bg:#CFF2E3;  --mint-tx:#2F9A75;  --mint-dot:#79D7B2;
+    --sky-bg:#D6ECFB;   --sky-tx:#3C84B8;   --sky-dot:#8CC9EE;
+    --yellow-bg:#FFF0C6; --yellow-tx:#C0901E; --yellow-dot:#FFD667;
+    --gray-bg:#EAE9F0;  --gray-tx:#6E6B7C;  --gray-dot:#B7B5C4;
+    --peach-bg:#FFE8D2; --peach-tx:#C57E3A; --peach-dot:#FFBE85;
+    --lav-bg:#E7E3F6;   --lav-tx:#7A71AD;   --lav-dot:#B7AEE2;
+
+    --warn:#E8536B;
+    --warn-bg:#FFE2E7;
+
+    --radius:22px;
+    --shadow:0 8px 24px rgba(140,120,160,.12);
+    --shadow-sm:0 4px 12px rgba(140,120,160,.10);
+  }
+
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,
+      "Apple SD Gothic Neo","Segoe UI",Roboto,"Noto Sans KR",sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(120% 60% at 100% 0%, #DFF6EC 0%, transparent 55%),
+      radial-gradient(120% 50% at 0% 0%, #E3F1FF 0%, transparent 50%),
+      var(--cream);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:480px;margin:0 auto;padding:0 16px 40px;}
+
+  /* ───────── 헤더 ───────── */
+  .hero{
+    position:relative;
+    margin:14px 0 22px;
+    padding:26px 22px 24px;
+    border-radius:28px;
+    background:linear-gradient(135deg,#C6F0DD 0%,#CFE9FB 48%,#FFD9CC 100%);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"🌴";position:absolute;right:-6px;bottom:-14px;
+    font-size:96px;opacity:.22;transform:rotate(-8deg);
+  }
+  .hero .kicker{
+    display:inline-block;font-size:12px;font-weight:800;letter-spacing:.04em;
+    color:#2C6E63;background:rgba(255,255,255,.75);
+    padding:5px 12px;border-radius:999px;backdrop-filter:blur(2px);
+  }
+  .hero h1{
+    margin:12px 0 4px;font-size:27px;font-weight:800;letter-spacing:-.02em;
+    color:#3E5A5E;
+  }
+  .hero h1 .em{color:#E07A5F;}
+  .hero .sub{margin:0;font-size:14px;font-weight:600;color:#5E6E70;}
+  .hero .sub b{color:#2F9A75;}
+  .hero .who{
+    margin:8px 0 0;display:inline-block;font-size:13px;font-weight:700;color:#3E5A5E;
+    background:rgba(255,255,255,.75);padding:5px 12px;border-radius:999px;backdrop-filter:blur(2px);
+  }
+
+  /* ───────── 호텔 정보 토글 ───────── */
+  .hotel-toggle{
+    display:flex;align-items:center;justify-content:space-between;
+    width:100%;margin:0 0 4px;padding:14px 18px;border:none;cursor:pointer;
+    font-family:inherit;font-size:15px;font-weight:800;color:#3E5A5E;
+    background:#fff;border-radius:18px;box-shadow:var(--shadow-sm);
+  }
+  .hotel-toggle .arrow{font-size:13px;color:var(--ink-soft);transition:transform .25s ease;}
+  .hotel-toggle[aria-expanded="true"] .arrow{transform:rotate(180deg);}
+
+  .hotel-panel{
+    overflow:hidden;max-height:0;opacity:0;
+    transition:max-height .35s ease,opacity .25s ease,margin .25s ease;
+  }
+  .hotel-panel.open{max-height:1200px;opacity:1;margin-top:8px;}
+  .hotel-panel + .hotel-toggle{margin-top:12px;}
+  #tipsPanel.open{max-height:2400px;}
+  #resort.open{max-height:2800px;}
+  .tip-card{
+    background:#fff;border-radius:var(--radius);padding:14px 16px;
+    box-shadow:var(--shadow-sm);margin-bottom:10px;border-left:6px solid var(--ac,#FF9C82);
+  }
+  .tip-card h3{margin:0 0 8px;font-size:15px;font-weight:800;letter-spacing:-.01em;}
+  .tip-card ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;}
+  .tip-card li{
+    font-size:13px;font-weight:600;color:#5E586E;line-height:1.5;
+    padding-left:16px;position:relative;
+  }
+  .tip-card li::before{content:"·";position:absolute;left:4px;top:-1px;font-weight:800;color:var(--ac,#FF9C82);}
+  .tip-card li b{color:var(--warn);font-weight:800;}
+  .hotel-card{
+    background:#fff;border-radius:var(--radius);padding:15px 16px;
+    box-shadow:var(--shadow-sm);margin-bottom:10px;border-left:6px solid var(--ac,#A8E6CF);
+  }
+  .hotel-card .tag{
+    display:inline-block;font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px;
+    background:var(--tagbg);color:var(--tagtx);margin-bottom:7px;
+  }
+  .hotel-card h3{margin:0 0 6px;font-size:16px;font-weight:800;letter-spacing:-.01em;}
+  .hotel-card .info{display:flex;flex-direction:column;gap:5px;margin-bottom:11px;}
+  .hotel-card .info span{font-size:13px;font-weight:600;color:#6B6577;}
+
+  /* ───────── 섹션 타이틀 ───────── */
+  .sec-title{
+    display:flex;align-items:center;gap:8px;
+    margin:30px 4px 14px;font-size:18px;font-weight:800;letter-spacing:-.01em;
+  }
+  .sec-title small{font-size:12px;font-weight:600;color:var(--ink-soft);}
+
+  /* ───────── 타임라인 ───────── */
+  .timeline{position:relative;padding-left:30px;}
+  .timeline::before{
+    content:"";position:absolute;left:9px;top:8px;bottom:8px;width:3px;
+    border-radius:3px;
+    background:linear-gradient(#A8E6CF,#AEE0F5 45%,#FFB5A7);
+  }
+  .ev{position:relative;margin-bottom:14px;}
+  .dot{
+    position:absolute;left:-30px;top:18px;width:18px;height:18px;border-radius:50%;
+    background:#fff;border:4px solid var(--d,#B7B5C4);
+    box-shadow:0 0 0 4px var(--cream);z-index:2;
+  }
+  .ev.now .dot{
+    border-color:var(--coral-dot);
+    box-shadow:0 0 0 4px var(--cream),0 0 0 8px rgba(255,156,130,.35);
+    animation:pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 4px var(--cream),0 0 0 7px rgba(255,156,130,.30);}
+    50%{box-shadow:0 0 0 4px var(--cream),0 0 0 13px rgba(255,156,130,0);}
+  }
+
+  .card{
+    background:#fff;border-radius:var(--radius);padding:14px 16px;
+    box-shadow:var(--shadow-sm);border:1.5px solid #fff;
+  }
+  .ev.now .card{border-color:var(--coral-dot);box-shadow:0 8px 22px rgba(255,156,130,.22);}
+
+  .row1{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .time{font-size:15px;font-weight:800;color:var(--ink);letter-spacing:-.01em;}
+  .nowtag{
+    font-size:10.5px;font-weight:800;color:#fff;background:var(--coral-dot);
+    padding:2px 8px;border-radius:999px;
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:4px;
+    font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;
+    background:var(--bg);color:var(--tx);
+  }
+  .title{margin:8px 0 0;font-size:16px;font-weight:700;letter-spacing:-.01em;}
+
+  /* 일정 체크 + 접기 */
+  .ev-check{
+    margin-left:auto;flex:0 0 26px;width:26px;height:26px;border-radius:9px;
+    border:2.5px solid #DCD6CB;background:#fff;color:#fff;cursor:pointer;
+    font-size:14px;font-weight:800;line-height:1;display:flex;
+    align-items:center;justify-content:center;transition:all .15s ease;padding:0;
+  }
+  .ev-check:active{transform:scale(.9);}
+  .ev-body{
+    overflow:hidden;max-height:600px;opacity:1;
+    transition:max-height .3s ease,opacity .2s ease,margin .2s ease;
+  }
+  .ev.collapsed .card{background:#FBFAF7;border-color:#EEF6F1;}
+  .ev.collapsed .ev-check{background:#3FB68A;border-color:#3FB68A;}
+  .ev.collapsed .dot{border-color:#9BDCC0 !important;}
+  .ev.collapsed .title{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:rgba(138,133,160,.5);}
+  .ev.collapsed .ev-body{max-height:0;opacity:0;margin-top:-8px;}
+  .ev.collapsed.now .card{border-color:var(--coral-dot);}
+
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;}
+  .pill{
+    font-size:12px;font-weight:600;color:var(--ink-soft);
+    background:var(--cream-2);padding:4px 10px;border-radius:999px;
+  }
+  .memo{
+    margin-top:9px;font-size:13px;font-weight:600;color:#6B6577;
+    background:var(--cream-2);border-radius:14px;padding:8px 11px;
+  }
+  .memo.warn{color:var(--warn);background:var(--warn-bg);font-weight:700;}
+  .memo .ic{margin-right:3px;}
+
+  .maps{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px;}
+  .map-btn{
+    display:inline-flex;align-items:center;gap:5px;
+    font-size:13px;font-weight:800;text-decoration:none;color:#2F9A75;
+    background:var(--mint-bg);padding:8px 14px;border-radius:999px;
+    transition:transform .12s ease;
+  }
+  .map-btn:active{transform:scale(.95);}
+  .map-btn.alt{color:#3C84B8;background:var(--sky-bg);}
+
+  /* ───────── 리조트 섹션 ───────── */
+  .res-card{
+    background:#fff;border-radius:var(--radius);padding:15px 16px;
+    box-shadow:var(--shadow-sm);margin-bottom:12px;border-left:6px solid var(--ac,#A8E6CF);
+  }
+  .res-card h3{margin:0 0 4px;font-size:15px;font-weight:800;}
+  .res-card .note{margin:0 0 10px;font-size:12px;color:var(--ink-soft);font-weight:600;}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;}
+  .chip{
+    font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:13px;
+    background:var(--cream-2);color:#5E586E;
+  }
+  .chip.warn{background:var(--warn-bg);color:var(--warn);}
+  .chip b{color:#2F9A75;}
+
+  /* ───────── 체크리스트 ───────── */
+  .check{
+    display:flex;align-items:flex-start;gap:12px;
+    background:#fff;border-radius:18px;padding:13px 15px;margin-bottom:9px;
+    box-shadow:var(--shadow-sm);cursor:pointer;user-select:none;
+    transition:background .15s ease;
+  }
+  .box{
+    flex:0 0 24px;width:24px;height:24px;border-radius:8px;margin-top:1px;
+    border:2.5px solid #D9D3C8;background:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;color:#fff;transition:all .15s ease;
+  }
+  .check .lab{font-size:14.5px;font-weight:600;letter-spacing:-.01em;}
+  .check.done{background:var(--mint-bg);}
+  .check.done .box{background:#3FB68A;border-color:#3FB68A;}
+  .check.done .lab{color:#2F9A75;text-decoration:line-through;text-decoration-color:rgba(47,154,117,.5);}
+  .check.removing{
+    background:var(--mint-bg);
+    animation:checkout-anim .32s ease forwards;
+  }
+  .check.removing .box{background:#3FB68A;border-color:#3FB68A;}
+  @keyframes checkout-anim{
+    0%{opacity:1;}
+    40%{opacity:1;transform:scale(1.02);}
+    100%{opacity:0;transform:translateX(40px) scale(.9);max-height:0;margin:0;padding-top:0;padding-bottom:0;}
+  }
+  .check-done-all{
+    text-align:center;font-size:15px;font-weight:800;color:#2F9A75;
+    background:var(--mint-bg);border-radius:18px;padding:18px;
+  }
+
+  /* ───────── 푸터 ───────── */
+  .footer{text-align:center;margin-top:34px;font-size:13px;font-weight:600;color:var(--ink-soft);}
+  .footer .big{font-size:22px;}
+
+  /* ───────── 지금으로 ───────── */
+  .jump{
+    position:fixed;left:50%;bottom:18px;transform:translateX(-50%);
+    z-index:50;display:none;align-items:center;gap:6px;
+    font-size:13.5px;font-weight:800;color:#fff;text-decoration:none;
+    background:var(--coral-dot);padding:11px 18px;border-radius:999px;
+    box-shadow:0 8px 20px rgba(255,120,90,.4);cursor:pointer;border:none;
+  }
+  .jump.show{display:inline-flex;animation:pop .3s ease;}
+  @keyframes pop{from{transform:translateX(-50%) scale(.8);opacity:0;}to{transform:translateX(-50%) scale(1);opacity:1;}}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="kicker">DAY 1 · NHA TRANG → CAM RANH</span>
+    <h1>🌴 나트랑 <span class="em">여행일정</span></h1>
+    <p class="sub">7월 4일 <b>(토)</b></p>
+    <p class="who">👭 참석자 · 선고은 · 고지은</p>
+  </header>
+
+  <button class="hotel-toggle" id="hotelToggle" aria-expanded="false">
+    <span>🏨 호텔 정보</span><span class="arrow">▾</span>
+  </button>
+  <div class="hotel-panel" id="hotelPanel"></div>
+
+  <button class="hotel-toggle" id="resortToggle" aria-expanded="false">
+    <span>🏝️ 아나만다라 정보</span><span class="arrow">▾</span>
+  </button>
+  <div class="hotel-panel" id="resort"></div>
+
+  <button class="hotel-toggle" id="tipsToggle" aria-expanded="false">
+    <span>⚠️ 여행 주의사항</span><span class="arrow">▾</span>
+  </button>
+  <div class="hotel-panel" id="tipsPanel"></div>
+
+  <h2 class="sec-title">🗓️ 오늘 일정 <small>위에서 아래로</small></h2>
+  <div class="timeline" id="timeline"></div>
+
+  <footer class="footer">
+    <div class="big">🌅🏝️🐚</div>
+    오늘도 좋은 하루 되세요!<br>여행 잘 다녀와요 ✨
+  </footer>
+
+</div>
+
+<button class="jump" id="jump">⏰ 지금 일정으로</button>
+
+<script>
+/* ───────── 호텔 정보 ───────── */
+const HOTELS = [
+  {role:"오늘 퇴실 (낮 시간 짐 보관)", roleC:"yellow", ac:"#FFD667",
+   name:"레스참 호텔 (Le Cham)",
+   info:["📍 나트랑 시내","🧳 11:00 퇴실 후 짐 맡겼다가 15:20쯤 회수","🍜 반미·네일·마사지 다 도보권"],
+   maps:[{l:"지도 열기",u:"https://maps.app.goo.gl/vJoJSuwcgtXahy4C9"}]},
+  {role:"오늘 체크인 (1박)", roleC:"sky", ac:"#8CC9EE",
+   name:"아나만다라 깜란 리조트",
+   info:["📍 깜란 (시내서 약 30km · 그랩 30–40분)","🕓 16:20 체크인 예정","🥐 조식 포함","🏖️ 프라이빗 비치 + 수영장"],
+   maps:[{l:"지도 열기",u:"https://www.google.com/maps/search/Ana+Mandara+Cam+Ranh+Resort"}]},
+];
+const hp = document.getElementById("hotelPanel");
+HOTELS.forEach(h=>{
+  const maps = h.maps.map(m=>`<a class="map-btn" href="${m.u}" target="_blank" rel="noopener">📍 ${m.l}</a>`).join("");
+  const card = document.createElement("div");
+  card.className = "hotel-card";
+  card.style.setProperty("--ac", h.ac);
+  card.style.setProperty("--tagbg", `var(--${h.roleC}-bg)`);
+  card.style.setProperty("--tagtx", `var(--${h.roleC}-tx)`);
+  card.innerHTML = `<span class="tag">${h.role}</span>
+    <h3>${h.name}</h3>
+    <div class="info">${h.info.map(x=>`<span>${x}</span>`).join("")}</div>
+    <div class="maps">${maps}</div>`;
+  hp.appendChild(card);
+});
+const ht = document.getElementById("hotelToggle");
+ht.addEventListener("click", ()=>{
+  const open = hp.classList.toggle("open");
+  ht.setAttribute("aria-expanded", open ? "true" : "false");
+});
+
+/* ───────── 여행 주의사항 ───────── */
+const TIPS = [
+  {h:"💧 물 · 음식 위생", ac:"#8CC9EE", items:[
+    "수돗물은 마시지 말고, 양치도 가급적 생수로",
+    "음료는 <b>“노 아이스(No Ice)”</b> · 병/캔 생수 위주로",
+    "반미·길거리 음식은 사람 많은 깨끗한 곳에서",
+    "배탈·소화제 등 상비약 챙기기"]},
+  {h:"🚕 택시 · 그랩", ac:"#FFD667", items:[
+    "이동은 <b>그랩(Grab) 앱</b> 호출 권장",
+    "앱에 뜬 차량번호와 실제 차가 같은지 꼭 확인",
+    "호객 택시 · '미터기 없이 정가 흥정'은 바가지 위험",
+    "기사가 잔돈 안 거슬러주는 경우 → 앱 카드결제가 편함",
+    "깜란 공항 ↔ 시내 차로 약 40분"]},
+  {h:"💵 환전 · 현금", ac:"#79D7B2", items:[
+    "동(VND)은 0이 많아 <b>0 개수 항상 확인</b>",
+    "환전 직후 그 자리에서 한 장씩 세기 (밑장 빼기 주의)",
+    "시장·노점은 현금만 가능 · 소액권 넉넉히",
+    "신뢰할 수 있는 은행/한인 환전소 이용"]},
+  {h:"👜 소지품 · 소매치기", ac:"#FF9C82", items:[
+    "야시장·해변·붐비는 곳에서 소매치기 주의",
+    "가방은 앞으로 메기 (도로 반대쪽 어깨)",
+    "폰을 손에 들고 걷지 말기 (오토바이 날치기)",
+    "해변에 귀중품 두고 자리 비우지 않기"]},
+  {h:"☀️ 햇빛 · 해변 안전", ac:"#C2A0EE", items:[
+    "낮 12~15시 자외선 매우 강함 → 선크림 수시로",
+    "화상 진정용 알로에젤 있으면 유용",
+    "프라이빗 비치 18시 · 수영장 20시 마감 (오늘 일정 참고)",
+    "파도·이안류 주의, 안전요원 구역에서 수영"]},
+  {h:"👗 복장 · 매너", ac:"#FFBE85", items:[
+    "사원 방문 시 어깨·무릎 가리는 복장",
+    "리조트 밖에서는 과한 노출 자제",
+    "공공장소 과도한 스킨십·왼손으로 물건 건네기 자제"]},
+  {h:"🚭 입국 규정 (중요)", ac:"#E8536B", items:[
+    "<b>전자담배(액상·가열식 전부) 반입·소지·사용 전면 금지</b>",
+    "적발 시 큰 벌금·징역 가능 → 절대 가져가지 않기"]},
+  {h:"🆘 비상 연락", ac:"#B7AEE2", items:[
+    "경찰 <b>113</b> · 소방 <b>114</b> · 구급 <b>115</b>",
+    "여권 사본을 따로 보관 (분실 대비)",
+    "여행자보험 증서·긴급연락처 메모해두기"]},
+];
+const tp = document.getElementById("tipsPanel");
+TIPS.forEach(t=>{
+  const card = document.createElement("div");
+  card.className = "tip-card";
+  card.style.setProperty("--ac", t.ac);
+  card.innerHTML = `<h3>${t.h}</h3><ul>${t.items.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+  tp.appendChild(card);
+});
+const tt = document.getElementById("tipsToggle");
+tt.addEventListener("click", ()=>{
+  const open = tp.classList.toggle("open");
+  tt.setAttribute("aria-expanded", open ? "true" : "false");
+});
+
+/* 아나만다라 정보 토글 */
+const rtog = document.getElementById("resortToggle");
+rtog.addEventListener("click", ()=>{
+  const open = res.classList.toggle("open");
+  rtog.setAttribute("aria-expanded", open ? "true" : "false");
+});
+
+/* ───────── 카테고리 정의 ───────── */
+const CAT = {
+  checkout:{label:"퇴실",  emoji:"🏨", c:"yellow"},
+  meal:    {label:"식사",  emoji:"🥖", c:"coral"},
+  nail:    {label:"네일",  emoji:"💅", c:"purple"},
+  shopping:{label:"구경",  emoji:"🛍️", c:"peach"},
+  massage: {label:"마사지", emoji:"💆", c:"mint"},
+  move:    {label:"이동",  emoji:"🧳", c:"gray"},
+  taxi:    {label:"이동",  emoji:"🚕", c:"gray"},
+  checkin: {label:"체크인", emoji:"🏨", c:"yellow"},
+  prep:    {label:"준비",  emoji:"🧳", c:"lav"},
+  beach:   {label:"해변",  emoji:"🏖️", c:"sky"},
+  swim:    {label:"수영",  emoji:"🏊", c:"sky"},
+  dinner:  {label:"저녁",  emoji:"🍽️", c:"coral"},
+};
+
+/* ───────── 일정 데이터 ───────── */
+const PLAN = [
+  {start:"11:00", time:"11:00", cat:"checkout", title:"레스참 호텔 퇴실",
+   memo:"짐은 호텔에 맡겨두기", maps:[{l:"지도",u:"https://maps.app.goo.gl/vJoJSuwcgtXahy4C9"}]},
+
+  {start:"11:01", time:"11:01–11:25", cat:"meal", title:"반미 판 (Banh Mi Phan)",
+   move:"🚶 도보 1분", memo:"하나 사서 나눠먹기",
+   maps:[{l:"지도",u:"https://maps.app.goo.gl/AURCwPEih2DcepvMA"}]},
+
+  {start:"11:30", time:"11:30–13:00", cat:"nail", title:"니에나 네일 (손 + 발)",
+   memo:"11:30까지 도착! (제거 예약) · 본예약 12:00", warn:true,
+   maps:[{l:"지도",u:"https://maps.app.goo.gl/HfuTeF6jPL1NoBvt7"}]},
+
+  {start:"13:00", time:"13:00–13:30", cat:"shopping", title:"주변 돌아다니기 (옷가게 · 약국)",
+   move:"🚶 도보", memo:"길거리 구경거리 많음",
+   maps:[{l:"거리",u:"https://maps.app.goo.gl/5fvvLGNMTdSLEiYR9"},
+         {l:"약국",u:"https://maps.app.goo.gl/msrQsnJN35bgE4X99",alt:true}]},
+
+  {start:"13:30", time:"13:30–14:10", cat:"meal", emoji:"🍴", title:"씀모이 가든 (Sum Moi Garden)",
+   maps:[{l:"지도",u:"https://maps.app.goo.gl/Qwg3DhyEbtjebrB28"}]},
+
+  {start:"14:20", time:"14:20–15:20", cat:"massage", title:"발 + 어깨 마사지 (60분)",
+   memo:"식당 → 마사지 도보 5분",
+   maps:[{l:"지도",u:"https://maps.app.goo.gl/bhTn2u8VTj3PxyAdA"}]},
+
+  {start:"15:20", time:"15:20–15:40", cat:"move", title:"레스참 호텔서 짐 회수",
+   move:"🚶 도보 ~10분 (추정)",
+   maps:[{l:"지도",u:"https://maps.app.goo.gl/vJoJSuwcgtXahy4C9"}]},
+
+  {start:"15:40", time:"15:40–16:20", cat:"taxi", title:"그랩으로 깜란 이동",
+   memo:"약 30km · 30–40분 (체증시 40분+)"},
+
+  {start:"16:20", time:"16:20", cat:"checkin", title:"아나만다라 깜란 리조트",
+   memo:"조식 포함 🥐",
+   maps:[{l:"지도",u:"https://www.google.com/maps/search/Ana+Mandara+Cam+Ranh+Resort"}]},
+
+  {start:"16:21", time:"16:20–16:50", cat:"prep", title:"객실 짐풀기 · 수영복 환복"},
+
+  {start:"16:50", time:"16:50–17:40", cat:"beach", title:"프라이빗 비치",
+   memo:"비치 18:00 마감 → 먼저 가기!", warn:true},
+
+  {start:"17:40", time:"17:40–18:40", cat:"swim", title:"리조트 수영장",
+   memo:"20시 마감 · 노을 보며 🌅"},
+
+  {start:"18:40", time:"18:40–19:10", cat:"prep", label:"정리", emoji:"🚿", title:"샤워 · 저녁 준비"},
+
+  {start:"19:10", time:"19:10 ~", cat:"dinner", title:"저녁 (미정)",
+   memo:"리조트 식당 or 시내"},
+];
+
+/* ───────── 타임라인 렌더 ───────── */
+const toMin = t => {const[h,m]=t.split(":").map(Number);return h*60+m;};
+const tl = document.getElementById("timeline");
+
+let tlDone = {};
+try{ tlDone = JSON.parse(localStorage.getItem("ntr_0704_tl")||"{}"); }catch(e){ tlDone = {}; }
+
+PLAN.forEach((p,i)=>{
+  const cat = CAT[p.cat];
+  const emoji = p.emoji || cat.emoji;
+  const label = p.label || cat.label;
+  const c = cat.c;
+
+  const maps = (p.maps||[]).map(m =>
+    `<a class="map-btn ${m.alt?'alt':''}" href="${m.u}" target="_blank" rel="noopener">📍 ${m.l}</a>`
+  ).join("");
+
+  const ev = document.createElement("div");
+  ev.className = "ev" + (tlDone[i] ? " collapsed" : "");
+  ev.dataset.start = toMin(p.start);
+  ev.style.setProperty("--d", `var(--${c}-dot)`);
+  ev.innerHTML = `
+    <span class="dot"></span>
+    <div class="card">
+      <div class="row1">
+        <span class="time">${p.time}</span>
+        <span class="badge" style="--bg:var(--${c}-bg);--tx:var(--${c}-tx)">${emoji} ${label}</span>
+        <span class="nowtag" style="display:none">NOW</span>
+        <button class="ev-check" aria-label="완료 표시">✓</button>
+      </div>
+      <p class="title">${p.title}</p>
+      <div class="ev-body">
+        <div class="meta">${p.move?`<span class="pill">${p.move}</span>`:""}</div>
+        ${p.memo?`<div class="memo ${p.warn?'warn':''}">${p.warn?'<span class="ic">⚠️</span>':'<span class="ic">📌</span>'}${p.memo}</div>`:""}
+        ${maps?`<div class="maps">${maps}</div>`:""}
+      </div>
+    </div>`;
+  ev.querySelector(".ev-check").addEventListener("click", (e)=>{
+    e.stopPropagation();
+    const done = ev.classList.toggle("collapsed");
+    tlDone[i] = done;
+    try{ localStorage.setItem("ntr_0704_tl", JSON.stringify(tlDone)); }catch(err){}
+  });
+  tl.appendChild(ev);
+});
+
+/* ───────── 리조트 섹션 ───────── */
+const RESORT = [
+  {h:"✅ 무료 / 포함", ac:"#79D7B2",
+   note:"투숙객이면 그냥 누리는 것들",
+   items:["조식 포함 🥐","수영장 + 키즈풀 (06–20시)","프라이빗 비치 (06–18시)",
+     "헬스장 (06–20시)","자전거 대여 🚲","키즈클럽 (그림·연날리기·가든)",
+     "웰컴드링크 (로비 11–18시)","Wi-Fi · 주차 🅿️"]},
+  {h:"🧘 선셋요가", ac:"#8CC9EE", note:"예약 필수",
+   special:`<div class="chips"><span class="chip">수·일 <b>17:00–18:00</b></span></div>
+     <div class="memo warn" style="margin-top:9px"><span class="ic">⚠️</span>7/4 토요일은 운영 X · <b style="color:#2F9A75">일요일(수·일 운영) 확인!</b></div>`},
+  {h:"⚠️ 현장 확인 필요", ac:"#FFD667", note:"가서 직접 물어보기",
+   chipsWarn:["시내 셔틀버스 — 무료/유료 불명, 전날예약 필수","애프터눈티 14:30–16:00 — 대상 불명"]},
+  {h:"💰 유료", ac:"#FF9C82",
+   items:["스파","베이비시팅","세탁","프라이빗디너","투어","공항픽업"]},
+  {h:"🍴 리조트 식당", ac:"#C2A0EE",
+   items:["Ana Beach House","Ana Lagoon House","Ana Sand House","Sunken Pool Bar"]},
+];
+const res = document.getElementById("resort");
+RESORT.forEach(r=>{
+  let body = "";
+  if(r.special){ body = r.special; }
+  else if(r.chipsWarn){ body = `<div class="chips">${r.chipsWarn.map(x=>`<span class="chip warn">${x}</span>`).join("")}</div>`; }
+  else { body = `<div class="chips">${r.items.map(x=>`<span class="chip">${x}</span>`).join("")}</div>`; }
+  const card = document.createElement("div");
+  card.className = "res-card";
+  card.style.setProperty("--ac", r.ac);
+  card.innerHTML = `<h3>${r.h}</h3>${r.note?`<p class="note">${r.note}</p>`:""}${body}`;
+  res.appendChild(card);
+});
+
+/* ───────── 현재 진행중 표시 ───────── */
+const jump = document.getElementById("jump");
+let nowEl = null;
+function markNow(){
+  const now = new Date();
+  const cur = now.getHours()*60 + now.getMinutes();
+  const evs = [...document.querySelectorAll(".ev")];
+  let target = null;
+  for(let i=0;i<evs.length;i++){
+    const s = +evs[i].dataset.start;
+    const next = i+1<evs.length ? +evs[i+1].dataset.start : 24*60;
+    if(cur>=s && cur<next){ target = evs[i]; break; }
+  }
+  evs.forEach(e=>{
+    e.classList.remove("now");
+    const tag = e.querySelector(".nowtag"); if(tag) tag.style.display="none";
+  });
+  if(target){
+    target.classList.add("now");
+    const tag = target.querySelector(".nowtag"); if(tag) tag.style.display="inline-block";
+    nowEl = target;
+    jump.classList.add("show");
+  } else {
+    nowEl = null;
+    jump.classList.remove("show");
+  }
+}
+jump.addEventListener("click", ()=>{
+  if(nowEl) nowEl.scrollIntoView({behavior:"smooth", block:"center"});
+});
+markNow();
+setInterval(markNow, 60000);
+</script>
+</body>
+</html>
